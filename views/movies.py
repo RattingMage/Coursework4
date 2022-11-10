@@ -10,8 +10,6 @@ movie_ns = Namespace('movies')
 @movie_ns.route('/')
 class MoviesView(Resource):
     def get(self):
-        page = None
-        status = None
         page = request.args.get('page', None)
         status = request.args.get('status', None)
         if page is not None and status is None:
