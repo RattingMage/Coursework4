@@ -11,10 +11,7 @@ director_ns = Namespace('directors')
 class DirectorsView(Resource):
     def get(self):
         page = None
-        try:
-            page = request.args.get('page')
-        except:
-            pass
+        page = request.args.get('page', None)
         if page is not None:
             directors = director_service.get_twenty(page)
         else:
