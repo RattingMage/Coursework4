@@ -12,14 +12,8 @@ class MoviesView(Resource):
     def get(self):
         page = None
         status = None
-        try:
-            page = request.args.get('page')
-        except:
-            pass
-        try:
-            status = request.args.get('status')
-        except:
-            pass
+        page = request.args.get('page', None)
+        status = request.args.get('status', None)
         if page is not None and status is None:
             movies = movie_service.get_twenty(int(page))
         elif status is not None and page is None:
@@ -41,7 +35,7 @@ class MoviesView(Resource):
 class MovieView(Resource):
     def get(self, bid):
         movie = movie_service.get_one(bid)
-        return MovieSchema(many=True).dump(movie), 200
+        return MovieSchema().dump(movie), 200
 
     def put(self, bid):
         req_json = request.json
