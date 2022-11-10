@@ -10,11 +10,7 @@ genre_ns = Namespace('genres')
 @genre_ns.route('/')
 class GenresView(Resource):
     def get(self):
-        page = None
-        try:
-            page = request.args.get('page')
-        except:
-            pass
+        page = request.args.get('page')
         if page is not None:
             genres = genre_service.get_twenty(page)
         else:
