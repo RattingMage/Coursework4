@@ -10,7 +10,6 @@ director_ns = Namespace('directors')
 @director_ns.route('/')
 class DirectorsView(Resource):
     def get(self):
-        page = None
         page = request.args.get('page', None)
         if page is not None:
             directors = director_service.get_twenty(page)
