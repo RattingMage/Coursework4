@@ -9,12 +9,9 @@ auth_ns = Namespace('auth')
 @auth_ns.route('/register')
 class RegAuthView(Resource):
     def post(self):
-        try:
-            req_json = request.json
-            user = auth_service.register(req_json)
-            return "", 201, {"location": f"/users/{user.id}"}
-        except:
-            return "", 501
+        req_json = request.json
+        user = auth_service.register(req_json)
+        return "", 201, {"location": f"/users/{user.id}"}
 
 
 @auth_ns.route('/login')
